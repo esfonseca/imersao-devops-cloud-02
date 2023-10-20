@@ -28,11 +28,11 @@ apiVersion: apps/v1
 kind: Service
 metadata:
   name: postgre
-spec:
-  selector:
-    app: postgre
-  ports:
-    - port: 5432
+  spec:
+    selector:
+      app: postgre
+    ports:
+      - port: 5432
 ---
 apiVersion: apps/v1
 kind: Deployment
