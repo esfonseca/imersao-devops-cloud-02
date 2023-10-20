@@ -24,8 +24,8 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.0.0
       with:
-        context: ./imersao-devops-cloud-02\kube-news\src
-        file: ./imersao-devops-cloud-02\kube-news\src\Dockerfile
+        context: ./imersao-devops-cloud-02/kube-news/src
+        file: ./imersao-devops-cloud-02/kube-news/src/Dockerfile
         push: true
         tags: |
           esfonseca99/kube-news:${{ github.run_number }}
@@ -37,15 +37,20 @@ jobs:
     steps:
     - name: Checkout do repositorio
       uses: actions/checkout@v4.1.1
-      
     - name: Configuração das credenciais da AWS
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key:  ${{ secrets.AWS_ACCESS_KEY_PASS }}
-        aws-region: us-east-1
-      
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} # Criar Access key com permissão de CLI no EKS
+        aws-secret-access-key:  ${{ secrets.AWS_ACCESS_KEY_PASS }} # Criar Access key com permissão de CLI no EKS
+        aws-region: us-east-1 # North Virginia
     - name: Configurar o KubeConfig
-      run: echo "Configurar o KubeConfig"
-    - name: Aplicar o Deploy
-      run: echo "Executar o kubectl apply"
+      run: aws eks update-kubeconfig --name imersao-eks --region us-east-1
+    - name: Deploy to Kubernetes cluster
+      uses: Azure/k8s-deploy@v4.9
+      with:
+        manifests: |
+          ./imersao-devops-cloud-02/kube-news/k8s/deployment.yaml
+        images: |
+          esfonseca99/kube-news:${{ github.run_number }}
+          
+        
