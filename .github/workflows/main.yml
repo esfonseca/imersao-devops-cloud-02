@@ -9,9 +9,9 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-    - name: Efetuar o login no docker hub
-      run: echo "executar o docker login"
-
+    - name: Checkout do repositorio
+      uses: actions/checkout@v4.1.1
+      
     - name: Docker Login
       uses: docker/login-action@v3.0.0
       with:
@@ -33,9 +33,18 @@ jobs:
       
   CD:
     runs-on: ubuntu-latest
+    needs: [CI]
     steps:
-    - name: Autenticar na AWS
-      run: echo "Autenticar na AWS"
+    - name: Checkout do repositorio
+      uses: actions/checkout@v4.1.1
+      
+    - name: Configuração das credenciais da AWS
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key:  ${{ secrets.AWS_ACCESS_KEY_PASS }}
+        aws-region: us-east-1
+      
     - name: Configurar o KubeConfig
       run: echo "Configurar o KubeConfig"
     - name: Aplicar o Deploy
