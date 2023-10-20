@@ -61,6 +61,12 @@ Popular a base de dados do postgre com o arquivo "popula-dados.http"
 
         kubectl apply -f k8s/deployment.yaml && watch 'kubectl' get pods
 
+## Aula 03 - AWS
+
+1. Criar um Budget - Orçamento para o Cluster EKS
+
+
+
 ## Aula 04 - GitHub Actions
 
 1. Configuração GitHub Actions com EKS na AWS
@@ -96,3 +102,27 @@ Popular a base de dados do postgre com o arquivo "popula-dados.http"
                 run: echo "Configurar o KubeConfig"
                 - name: Aplicar o Deploy
                 run: echo "Executar o kubectl apply"''
+
+4. Pendencias GitHub Actions
+
+- Criação do ambiente Cloud AWS
+- Criação do Cluster EKS
+- Criação da "IAM Role" e Access Key para as variáveis
+- Casos de uso serviços AWS - EKS Cluster
+    - AmazonEKSClusterPolicy - Atribuir um nome para Role "EKSClusterRole"
+
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} # Criar Access key com permissão de CLI no EKS
+            aws-secret-access-key:  ${{ secrets.AWS_ACCESS_KEY_PASS }} # Criar Access key com permissão de CLI no EKS
+- Fazer o deploy com o template do AWS CloudFormation > Stacks > Create Stack
+
+## Aula 05 - Terraform
+
+1. Instalar o plugin Terraform para o Provider AWS
+
+2. Instalar o CLI da AWS
+
+        terraform plan
+        terraform apply
+
+3. Criação do Cluster EKS com Terraform usando modulos 1:23 https://youtu.be/EeyQLe1JnPM?si=eeGcIMDu58SGeB2c&t=5039
+
