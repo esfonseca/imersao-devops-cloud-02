@@ -18,10 +18,19 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }} #Definido em Setttinh > Security > Secrets and variables > Actions
         password: ${{ secrets.DOCKERHUB_PASS }} #Definido em Setttinh > Security > Secrets and variables > Actions
     
-    - name: Construir a imagem de container
+    - name: Construir e enviar a imagem para o Docker Registry
       run: echo "executar o docker build"
-    - name: Envio da imagem para o Docker registry
-      run: echo "executar o docker push"
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v5.0.0
+      with:
+        context: ./imersao-devops-cloud-02\kube-news\src
+        file: ./imersao-devops-cloud-02\kube-news\src\Dockerfile
+        push: true
+        tags: |
+          esfonseca99/kube-news:${{ github.run_number }}
+          esfonseca99/kube-news:latest
+      
   CD:
     runs-on: ubuntu-latest
     steps:
