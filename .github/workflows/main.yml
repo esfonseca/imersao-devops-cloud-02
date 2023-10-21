@@ -24,8 +24,8 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.0.0
       with:
-        context: ./imersao-devops-cloud-02/kube-news/src
-        file: ./imersao-devops-cloud-02/kube-news/src/Dockerfile
+        context: ./kube-news/src
+        file: ./kube-news/src/Dockerfile
         push: true
         tags: |
           esfonseca99/kube-news:${{ github.run_number }}
