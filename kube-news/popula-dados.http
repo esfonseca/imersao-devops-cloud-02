@@ -1,5 +1,5 @@
 
-POST http://esfonseca-desktop:8080/api/post
+POST http://a5b2973e207c344919875df2efec5e56-452392817.us-east-1.elb.amazonaws.com/api/post
 Content-Type: application/json
 
 {

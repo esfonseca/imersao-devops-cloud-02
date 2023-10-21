@@ -50,7 +50,7 @@ spec:
     spec: #Especificação do POD
         containers:
           - name: kubenews
-            image: fabricioveronez/kube-news:v1
+            image: esfonseca99/kube-news:v1
             ports:
               - containerPort: 8080
             env: # Variaveis de Ambiente Aplicação
@@ -73,5 +73,4 @@ spec:
   ports:
     - port: 80 #Porta HTTP Padrão Para Serviço
       targetPort: 8080 # Especifica a porta Alvo
-      nodePort: 30000
-  type: NodePort
+  type: LoadBalancer

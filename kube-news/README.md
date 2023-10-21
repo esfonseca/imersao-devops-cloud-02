@@ -115,6 +115,10 @@ Popular a base de dados do postgre com o arquivo "popula-dados.http"
             aws-secret-access-key:  ${{ secrets.AWS_ACCESS_KEY_PASS }} # Criar Access key com permissão de CLI no EKS
 - Fazer o deploy com o template do AWS CloudFormation > Stacks > Create Stack
 
+- Eliminar um Deploy
+
+        kubectl delete -f kube-news/k8s/deployment.yaml
+
 ## Aula 05 - Terraform
 
 1. Instalar o plugin Terraform para o Provider AWS
