@@ -18,16 +18,16 @@ DB_HOST => Endereço do banco de dados.
 
 1.  Construir a imagem em node com DockerFile
 
-        docker build -t fabricioveronez/kube-news:v1 . 
+        docker build -t esfoseca99/kube-news:v1 . 
 
 2. Subir a imagem para o Docker Hub
 
-        docker push fabricioveronez/kube-news:v1
+        docker push esfonseca99/kube-news:v1
 
 3. Subir a imagem tagueada como latest
 
-        docker tag fabricioveronez/kube-news:lastest
-        docker push fabricioveronez/kube-news:v1
+        docker tag esfonseca99/kube-news:lastest
+        docker push esfonseca99/kube-news:v1
 
 ### Voltar ao k3d fazer o deploy da imagem em docker
 
